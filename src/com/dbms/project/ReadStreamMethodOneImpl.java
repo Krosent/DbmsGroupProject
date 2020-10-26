@@ -10,6 +10,7 @@ import java.io.IOException;
 public class ReadStreamMethodOneImpl implements ReadStreamInterface {
     File file;
     FileReader fileReader;
+
     Boolean endOfStream = false;
 
     int cursor; // Current position

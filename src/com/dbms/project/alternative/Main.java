@@ -15,10 +15,10 @@ public class Main {
         //writeStreamMethodOne();
 
         // Execute read function of the second method
-        readStreamMethodThree();
+        readStreamMethodFour();
 
         // Execute write function of second method
-        writeStreamMethodThree();
+        writeStreamMethodFour();
 
     }
 
@@ -119,6 +119,44 @@ public class Main {
             try {
                 writeStreamInstance.writeLn("Hello World!");
                 writeStreamInstance.writeLn("Hello World2!");
+                writeStreamInstance.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                System.out.println("Write operation succeed");
+            }
+        }
+    }
+    public static void readStreamMethodFour() {
+        ReadStreamInterface readStreamInstance = new ReadStreamMethodFourImpl(5);
+        try {
+            readStreamInstance.open(".\\src\\com\\dbms\\project\\readFile");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                int i = 2;
+                while (!(readStreamInstance.endOfStream())) {
+                    readStreamInstance.seek(i);
+                    readStreamInstance.readLn();
+                    i +=3 ;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public static void writeStreamMethodFour() {
+        WriteStreamInterface writeStreamInstance = new WriteStreamMethodFourImpl(5);
+        try {
+            writeStreamInstance.create("newFile4");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                writeStreamInstance.writeLn("Hello World!");
+                writeStreamInstance.writeLn("Hello World2!");
+                writeStreamInstance.writeLn("Hello world3!");
                 writeStreamInstance.close();
             } catch (IOException e) {
                 e.printStackTrace();

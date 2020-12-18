@@ -38,7 +38,7 @@ public class ReadStreamMethodFourImpl implements ReadStreamInterface {
     }
 
     @Override
-    public void readLn() throws IOException {
+    public String readLn() throws IOException {
         List<Character> charList = new ArrayList<>();
         int endLine = '\n';
         if (mpbuf == null) {mpbuf = channel.map(FileChannel.MapMode.READ_ONLY, channel.position(),B);}
@@ -94,6 +94,7 @@ public class ReadStreamMethodFourImpl implements ReadStreamInterface {
 
         String charListToString = charList.stream().map(e->e.toString()).collect(Collectors.joining());
         System.out.println("Mapped list: "+ charListToString);
+        return charListToString;
 
     }
 

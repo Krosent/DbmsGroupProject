@@ -17,12 +17,14 @@ public class ReadStreamMethodTwoImpl implements ReadStreamInterface {
     }
 
     @Override
-    public void readLn() throws IOException {
+    public String readLn() throws IOException {
         if((line = br.readLine()) != null) {
             System.out.println("Line: " + line);
+            return line;
         }else{
         endOfStream = true;
-        br.close();}
+        br.close();
+        return "";}
     }
 
     @Override

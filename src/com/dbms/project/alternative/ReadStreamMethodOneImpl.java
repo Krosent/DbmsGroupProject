@@ -30,7 +30,7 @@ public class ReadStreamMethodOneImpl implements ReadStreamInterface {
     }
 
     @Override
-    public void readLn() throws IOException {
+    public String readLn() throws IOException {
         List<Character> charList = new ArrayList<>();
         int endLine = '\n';
 
@@ -44,6 +44,7 @@ public class ReadStreamMethodOneImpl implements ReadStreamInterface {
         }
         String charListToString = charList.stream().map(e->e.toString()).collect(Collectors.joining());
         System.out.println("Character list: "+ charListToString);
+        return charListToString;
 
     }
 

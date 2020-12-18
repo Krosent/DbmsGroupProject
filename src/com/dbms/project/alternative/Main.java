@@ -1,5 +1,7 @@
 package com.dbms.project.alternative;
 
+import com.dbms.project.experiment1.*;
+import com.dbms.project.experiment1.LengthReadStreamMethodOne;
 import com.dbms.project.streamInterfaces.ReadStreamInterface;
 import com.dbms.project.streamInterfaces.WriteStreamInterface;
 
@@ -15,17 +17,44 @@ public class Main {
         //writeStreamMethodOne();
 
         // Execute read function of the second method
-        readStreamMethodFour();
+        readStreamMethodThree();
 
         // Execute write function of second method
-        writeStreamMethodFour();
+        //writeStreamMethodFour();
+
+        Experiment1version4();
+
+    }
+
+    public static void Experiment1version4() {
+        String file = "comp_cast_type.csv";
+
+              LengthReadStreamMethodFour length1 = new LengthReadStreamMethodFour(5);
+              int sum = length1.calculateSum(file);
+              System.out.println("sum" + sum);
+
+
+    }
+
+    public static void Experiment1version2() {
+        String file = "comp_cast_type.csv";
+        ReadStreamInterface readStreamInstance = new ReadStreamMethodThreeImpl(5);
+
+        try {
+            readStreamInstance.open(".\\src\\com\\dbms\\project\\data\\comp_cast_type.csv");
+            LengthExperiment length1 = new LengthExperiment(readStreamInstance);
+            int sum = length1.calculateSum(file);
+            System.out.println("sum" + sum);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     public static void readStreamMethodOne() {
         ReadStreamInterface readStreamInstance = new ReadStreamMethodOneImpl();
         try {
-            readStreamInstance.open(".\\src\\com\\dbms\\project\\readFile");
+            readStreamInstance.open(".\\src\\com\\dbms\\project\\data\\comp_cast_type.csv");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } finally {
@@ -94,9 +123,9 @@ public class Main {
         }
     }
     public static void readStreamMethodThree() {
-        ReadStreamInterface readStreamInstance = new ReadStreamMethodThreeImpl(10);
+        ReadStreamInterface readStreamInstance = new ReadStreamMethodThreeImpl(5);
         try {
-            readStreamInstance.open(".\\src\\com\\dbms\\project\\readFile");
+            readStreamInstance.open(".\\src\\com\\dbms\\project\\data\\comp_cast_type.csv");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } finally {

@@ -36,21 +36,6 @@ public class Main {
 
     }
 
-    public static void Experiment1version2() {
-        String file = "comp_cast_type.csv";
-        ReadStreamInterface readStreamInstance = new ReadStreamMethodThreeImpl(5);
-
-        try {
-            readStreamInstance.open(".\\src\\com\\dbms\\project\\data\\comp_cast_type.csv");
-            LengthExperiment length1 = new LengthExperiment(readStreamInstance);
-            int sum = length1.calculateSum(file);
-            System.out.println("sum" + sum);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
     public static void readStreamMethodOne() {
         ReadStreamInterface readStreamInstance = new ReadStreamMethodOneImpl();
         try {

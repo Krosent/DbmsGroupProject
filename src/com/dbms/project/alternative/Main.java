@@ -1,5 +1,6 @@
 package com.dbms.project.alternative;
 
+import com.dbms.project.MultiWayMerge.Extsort;
 import com.dbms.project.experiment1.*;
 import com.dbms.project.experiment1.LengthReadStreamMethodOne;
 import com.dbms.project.streamInterfaces.ReadStreamInterface;
@@ -7,22 +8,36 @@ import com.dbms.project.streamInterfaces.WriteStreamInterface;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.*;
+
 
 public class Main {
 
     public static void main(String[] args) {
+        class Sortbyk implements Comparator<List<String>>
+        {
+            // Used for sorting in ascending order of
+            // roll number
+            public int compare(List<String> a,List<String> b)
+            {
+                return a.get(2).compareTo( b.get(2));
+            }
+
+
+        }
 	    // write your code here
 
         // Execute write function of first method
         //writeStreamMethodOne();
 
         // Execute read function of the second method
-        readStreamMethodThree();
+        //readStreamMethodThree();
 
         // Execute write function of second method
         //writeStreamMethodFour();
 
-        Experiment1version4();
+        //Experiment1version4();
+        TestExtsort();
 
     }
 
@@ -34,6 +49,14 @@ public class Main {
               System.out.println("sum" + sum);
 
 
+    }
+    public static void TestExtsort() {
+        String file = "kind_type.csv";
+
+        ReadStreamInterface readStreamInstance = new ReadStreamMethodOneImpl();
+        WriteStreamInterface writeStreamInstance = new WriteStreamMethodOneImpl();
+        Extsort srt = new Extsort(file, 2, 20, 2, readStreamInstance,writeStreamInstance);
+        srt.doSort();
     }
 
     public static void readStreamMethodOne() {
@@ -56,13 +79,13 @@ public class Main {
     public static void writeStreamMethodOne() {
         WriteStreamInterface writeStreamInstance = new WriteStreamMethodOneImpl();
         try {
-            writeStreamInstance.create("newFile");
+            writeStreamInstance.create("sortedFile");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
-                writeStreamInstance.writeLn("Hello World!");
-                writeStreamInstance.writeLn("Hello World2!");
+                writeStreamInstance.writeLn("1, movie");
+                writeStreamInstance.writeLn("5, tv mini series");
                 writeStreamInstance.close();
             } catch (IOException e) {
                 e.printStackTrace();

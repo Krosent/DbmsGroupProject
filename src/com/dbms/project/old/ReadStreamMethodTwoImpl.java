@@ -29,6 +29,7 @@ public class ReadStreamMethodTwoImpl implements ReadStreamInterface {
     @Override
     public void seek(int pos) throws IOException {
         for(int i=0; i<=pos; i++) {
+            System.out.println("LETS DEBUG YOPTA");
             if (br.readLine() == null) { break; };
         }
     }

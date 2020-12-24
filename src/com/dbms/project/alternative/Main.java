@@ -3,6 +3,9 @@ package com.dbms.project.alternative;
 import com.dbms.project.MultiWayMerge.Extsort;
 import com.dbms.project.experiment1.*;
 import com.dbms.project.experiment1.LengthReadStreamMethodOne;
+import com.dbms.project.experiment2.RandomReadingExperiment;
+import com.dbms.project.experiment2.RandomReadingExperimentOne;
+import com.dbms.project.experiment2.RandomReadingExperimentTwo;
 import com.dbms.project.streamInterfaces.ReadStreamInterface;
 import com.dbms.project.streamInterfaces.WriteStreamInterface;
 
@@ -12,7 +15,7 @@ import java.util.*;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         class Sortbyk implements Comparator<List<String>> {
             // Used for sorting in ascending order of
             // roll number
@@ -20,53 +23,88 @@ public class Main {
                 return a.get(2).compareTo(b.get(2));
             }
         }
-
+/*
         System.out.println("--- Write Function METHOD ONE ---");
         // Execute write function of first method
         writeStreamMethodOne();
         System.out.println("--- END ---");
 
+ */
+
+/*
         System.out.println("--- READ Function METHOD ONE ---");
         // Execute write function of first method
         readStreamMethodOne();
         System.out.println("--- END ---");
+*/
 
+/*
         System.out.println("--- Write Function METHOD TWO ---");
         // Execute write function of second method
         writeStreamMethodTwo();
         System.out.println("--- END ---");
+ */
 
+/*
         System.out.println("--- READ Function METHOD TWO ---");
         // Execute write function of second method
         readStreamMethodTwo();
         System.out.println("--- END ---");
 
+ */
+
+/*
         System.out.println("--- READ Function METHOD THREE ---");
         // Execute read function of the third method
         readStreamMethodThree();
         System.out.println("--- END ---");
+ */
 
+/*
         System.out.println("--- WRITE Function METHOD THREE ---");
         // Execute read function of the third method
         writeStreamMethodThree();
         System.out.println("--- END ---");
+ */
 
+/*
         System.out.println("--- READ Function METHOD FOURTH ---");
         // Execute read function of the fourth method
         readStreamMethodFour();
         System.out.println("--- END ---");
+ */
 
+/*
         System.out.println("--- WRITE Function METHOD FOURTH ---");
         // Execute write function of fourth method
         writeStreamMethodFour();
         System.out.println("--- END ---");
+ */
 
-        //Experiment1version4();
+        // Experiment1version4();
+        Experiment1version2();
 
+/*
         System.out.println("--- START Testing EXT SORT");
         TestExtsort();
         System.out.println("--- END OPERATION ---");
 
+ */
+
+
+
+        System.out.println("--- START Random Reading Experiment | ONE ---");
+        randomReadExperimentOne();
+        System.out.println("--- END OPERATION ---");
+
+
+
+        /*
+        System.out.println("--- START Random Reading Experiment | TWO ---");
+        randomReadExperimentTwo();
+        System.out.println("--- END OPERATION ---");
+
+         */
     }
 
     public static void Experiment1version4() {
@@ -78,6 +116,17 @@ public class Main {
 
 
     }
+
+    public static void Experiment1version2() {
+        String file = "comp_cast_type.csv";
+
+        LengthReadStreamMethodTwo length1 = new LengthReadStreamMethodTwo();
+        int sum = length1.calculateSum(file);
+        System.out.println("sum" + sum);
+
+    }
+
+
 
     public static void TestExtsort() {
         String file = "kind_type.csv";
@@ -234,5 +283,15 @@ public class Main {
                 System.out.println("Write operation succeed");
             }
         }
+    }
+
+    public static void randomReadExperimentOne() throws IOException {
+        RandomReadingExperimentOne randomReadingExperimentOne = new RandomReadingExperimentOne();
+        randomReadingExperimentOne.executeExperiment("kind_type.csv");
+    }
+
+    public static void randomReadExperimentTwo() throws IOException {
+        RandomReadingExperimentTwo randomReadingExperimentTwo = new RandomReadingExperimentTwo();
+        randomReadingExperimentTwo.executeExperiment("kind_type.csv");
     }
 }

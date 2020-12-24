@@ -9,7 +9,7 @@ import java.io.IOException;
 public class LengthExperiment{
     ReadStreamInterface version;
     int sum = 0;
-    String pathImdb = ".\\src\\com\\dbms\\project\\data\\";
+    String pathImdb = "src/com/dbms/project/data/";
     public LengthExperiment(ReadStreamInterface v) {
         this.version = v;
     }

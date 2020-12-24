@@ -21,10 +21,11 @@ public class ReadStreamMethodTwoImpl implements ReadStreamInterface {
         if((line = br.readLine()) != null) {
             System.out.println("Line: " + line);
             return line;
-        }else{
+        }else {
         endOfStream = true;
         br.close();
-        return "";}
+        return "";
+        }
     }
 
     @Override

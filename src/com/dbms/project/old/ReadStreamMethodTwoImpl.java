@@ -1,4 +1,4 @@
-package com.dbms.project;
+package com.dbms.project.old;
 
 import com.dbms.project.streamInterfaces.ReadStreamInterface;
 
@@ -17,12 +17,13 @@ public class ReadStreamMethodTwoImpl implements ReadStreamInterface {
     }
 
     @Override
-    public void readLn() throws IOException {
+    public String readLn() throws IOException {
         while((line = br.readLine()) != null) {
             System.out.println("Line: " + line);
         }
         endOfStream = true;
         br.close();
+        return "";
     }
 
     @Override

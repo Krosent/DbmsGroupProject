@@ -1,4 +1,4 @@
-package com.dbms.project;
+package com.dbms.project.old;
 
 import com.dbms.project.streamInterfaces.ReadStreamInterface;
 import com.dbms.project.streamInterfaces.WriteStreamInterface;

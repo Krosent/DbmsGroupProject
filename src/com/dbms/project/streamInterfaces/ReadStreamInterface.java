@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public interface ReadStreamInterface {
     void open(String path) throws FileNotFoundException;
-    void readLn() throws IOException;
+    String readLn() throws IOException;
     void seek(int pos) throws IOException;
     boolean endOfStream();
 }

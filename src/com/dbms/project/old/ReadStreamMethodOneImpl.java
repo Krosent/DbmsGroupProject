@@ -1,4 +1,4 @@
-package com.dbms.project;
+package com.dbms.project.old;
 
 import com.dbms.project.streamInterfaces.ReadStreamInterface;
 
@@ -27,7 +27,7 @@ public class ReadStreamMethodOneImpl implements ReadStreamInterface {
     }
 
     @Override
-    public void readLn() throws IOException {
+    public String readLn() throws IOException {
 
         while((cursor = fileReader.read()) != -1) {
             System.out.println("cursor: " + cursor);
@@ -35,7 +35,7 @@ public class ReadStreamMethodOneImpl implements ReadStreamInterface {
 
         endOfStream = true;
         fileReader.close();
-
+        return "";
     }
 
     @Override

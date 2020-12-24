@@ -20,7 +20,7 @@ public class Extsort {
 
     String pathImdbFile;
     public Extsort(String f, int k, int M, int d, ReadStreamInterface bestReadVersion, WriteStreamInterface bestWriteVersion){
-        this.pathImdbFile = ".\\src\\com\\dbms\\project\\data\\" + f;
+        this.pathImdbFile = "src/com/dbms/project/data/" + f;
         this.k = k;
         this.M = M;
         this.d = d;

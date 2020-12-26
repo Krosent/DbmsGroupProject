@@ -2,10 +2,7 @@ package com.dbms.project.alternative;
 
 import com.dbms.project.streamInterfaces.ReadStreamInterface;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,6 +23,7 @@ public class ReadStreamMethodOneImpl implements ReadStreamInterface {
     @Override
     public void open(String path) throws FileNotFoundException {
         file = new File(path);
+        //file = new RandomAccessFile(path,"r");
         this.fileReader = new FileReader(file);
     }
 
@@ -50,15 +48,8 @@ public class ReadStreamMethodOneImpl implements ReadStreamInterface {
 
     @Override
     public void seek(int pos) throws IOException {
-        // To mimic seek functionality let's read file until indicated position.
-        // Positions starts with 0 as arrays in Java.
-        for(int i=0; i<=pos; i++) {
-            if(fileReader.read() != -1) {
-                continue;
-            } else {
-                break;
-            }
-        }
+        fileReader = new FileReader(file);
+        fileReader.skip(pos);
     }
 
     @Override

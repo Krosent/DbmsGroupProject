@@ -30,9 +30,9 @@ public class ReadStreamMethodTwoImpl implements ReadStreamInterface {
 
     @Override
     public void seek(int pos) throws IOException {
-        for(int i=0; i<=pos; i++) {
-            if (br.readLine() == null) { break; };
-        }
+        br = new BufferedReader(new FileReader(file));
+        br.skip(pos);
+
     }
 
     @Override

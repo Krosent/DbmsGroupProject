@@ -3,9 +3,7 @@ package com.dbms.project.alternative;
 import com.dbms.project.MultiWayMerge.Extsort;
 import com.dbms.project.experiment1.*;
 import com.dbms.project.experiment1.LengthReadStreamMethodOne;
-import com.dbms.project.experiment2.RandomReadingExperiment;
-import com.dbms.project.experiment2.RandomReadingExperimentOne;
-import com.dbms.project.experiment2.RandomReadingExperimentTwo;
+import com.dbms.project.experiment2.*;
 import com.dbms.project.streamInterfaces.ReadStreamInterface;
 import com.dbms.project.streamInterfaces.WriteStreamInterface;
 
@@ -82,7 +80,8 @@ public class Main {
  */
 
         // Experiment1version4();
-        Experiment1version2();
+        //Experiment1version2();
+        //TestExtsort();
 
 /*
         System.out.println("--- START Testing EXT SORT");
@@ -93,18 +92,28 @@ public class Main {
 
 
 
-        System.out.println("--- START Random Reading Experiment | ONE ---");
+        /*System.out.println("--- START Random Reading Experiment | ONE ---");
         randomReadExperimentOne();
-        System.out.println("--- END OPERATION ---");
+        System.out.println("--- END OPERATION ---");*/
 
 
 
         /*
         System.out.println("--- START Random Reading Experiment | TWO ---");
         randomReadExperimentTwo();
+        System.out.println("--- END OPERATION ---");*/
+
+/*
+        System.out.println("--- START Random Reading Experiment | THREE ---");
+        randomReadExperimentThree();
+        System.out.println("--- END OPERATION ---");*/
+
+        System.out.println("--- START Random Reading Experiment | Four ---");
+        randomReadExperimentFour();
         System.out.println("--- END OPERATION ---");
 
-         */
+
+        //readStreamMethodFour();
     }
 
     public static void Experiment1version4() {
@@ -145,7 +154,10 @@ public class Main {
             e.printStackTrace();
         } finally {
             try {
+                readStreamInstance.seek(2);
+                readStreamInstance.seek(2);
                 while (!(readStreamInstance.endOfStream())) {
+
                     readStreamInstance.readLn();
                 }
             } catch (IOException e) {
@@ -181,6 +193,8 @@ public class Main {
             e.printStackTrace();
         } finally {
             try {
+                readStreamInstance.seek(2);
+                readStreamInstance.seek(2);
                 while (!(readStreamInstance.endOfStream())) {
                     readStreamInstance.readLn();
                 }
@@ -212,11 +226,13 @@ public class Main {
     public static void readStreamMethodThree() {
         ReadStreamInterface readStreamInstance = new ReadStreamMethodThreeImpl(5);
         try {
-            readStreamInstance.open("src/com/dbms/project/data/comp_cast_type.csv");
+            readStreamInstance.open("src/com/dbms/project/alternative/readFile");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } finally {
             try {
+                readStreamInstance.seek(2);
+                readStreamInstance.seek(2);
                 while (!(readStreamInstance.endOfStream())) {
                     readStreamInstance.readLn();
                 }
@@ -246,18 +262,20 @@ public class Main {
     }
 
     public static void readStreamMethodFour() {
-        ReadStreamInterface readStreamInstance = new ReadStreamMethodFourImpl(5);
+        ReadStreamInterface readStreamInstance = new ReadStreamMethodFourImpl(8);
         try {
             readStreamInstance.open("src/com/dbms/project/alternative/readFile");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } finally {
             try {
-                int i = 2;
+
+                readStreamInstance.seek(2);
+                readStreamInstance.seek(2);
                 while (!(readStreamInstance.endOfStream())) {
-                    readStreamInstance.seek(i);
+
                     readStreamInstance.readLn();
-                    i += 3;
+
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -293,5 +311,13 @@ public class Main {
     public static void randomReadExperimentTwo() throws IOException {
         RandomReadingExperimentTwo randomReadingExperimentTwo = new RandomReadingExperimentTwo();
         randomReadingExperimentTwo.executeExperiment("kind_type.csv");
+    }
+    public static void randomReadExperimentThree() throws IOException {
+        RandomReadingExperimentThree randomReadingExperimentThree = new RandomReadingExperimentThree();
+        randomReadingExperimentThree.executeExperiment("kind_type.csv", 5);
+    }
+    public static void randomReadExperimentFour() throws IOException {
+        RandomReadingExperimentFour randomReadingExperimentFour = new RandomReadingExperimentFour();
+        randomReadingExperimentFour.executeExperiment("kind_type.csv", 5);
     }
 }

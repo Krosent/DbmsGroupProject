@@ -52,15 +52,8 @@ public class ReadStreamMethodThreeImpl implements ReadStreamInterface {
 
     @Override
     public void seek(int pos) throws IOException {
-        // To mimic seek functionality let's read file until indicated position.
-        // Positions starts with 0 as arrays in Java.
-        for(int i=0; i<=pos; i++) {
-            if(buffer.read() != -1) {
-                continue;
-            } else {
-                break;
-            }
-        }
+        buffer = new BufferedReader(new FileReader(file),B);
+        buffer.skip(pos);
     }
 
     @Override

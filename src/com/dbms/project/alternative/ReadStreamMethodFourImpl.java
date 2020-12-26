@@ -28,7 +28,6 @@ public class ReadStreamMethodFourImpl implements ReadStreamInterface {
         this.channel = null;
         this.B = B;
         this.mpbuf = null;
-        this.bufPos = 0;
     }
 
     @Override
@@ -44,27 +43,15 @@ public class ReadStreamMethodFourImpl implements ReadStreamInterface {
         if (mpbuf == null) {mpbuf = channel.map(FileChannel.MapMode.READ_ONLY, channel.position(),B);}
         Boolean keepReading = true;
         Boolean lastBuf = false;
-        int skip = 0;
-        if (bufPos>0){
-            bufPos--;
-            while (mpbuf.capacity()<= mpbuf.position()+bufPos)
-        {
-        skip += (mpbuf.capacity() - mpbuf.position());
-        bufPos -= (mpbuf.capacity() - mpbuf.position());
-        mpbuf.position(0);}}
-        int newpos = bufPos;
+
+        int newpos = 0;
         cursor =-1;
         while(keepReading) {
-            if (skip == 0){
-                if(bufPos>0) {
-                    mpbuf.position(mpbuf.position() + (bufPos));
-                    newpos=bufPos;
-                    bufPos = 0; }
-                while((mpbuf.hasRemaining()) && ((cursor = mpbuf.get()) != endLine)){
-                    char ch = (char)cursor;
-                    charList.add(ch);
-                    newpos += 1; }
-            }
+            while((mpbuf.hasRemaining()) && ((cursor = mpbuf.get()) != endLine)){
+                char ch = (char)cursor;
+                charList.add(ch);
+                newpos += 1; }
+
 
             if (cursor == endLine) {
                 keepReading = false;
@@ -75,11 +62,7 @@ public class ReadStreamMethodFourImpl implements ReadStreamInterface {
                 channel.close();
 
             } else {
-                if(skip>0) {
-                    channel.position((int)channel.position() + skip);
-                    skip = 0;
-                }else{channel.position((int)channel.position() + newpos);}
-
+                channel.position((int)channel.position() + newpos);
                 newpos = 0;
                 int left = (int)channel.size() - (int)channel.position();
                 int length = B;
@@ -100,7 +83,8 @@ public class ReadStreamMethodFourImpl implements ReadStreamInterface {
 
     @Override
     public void seek(int pos) throws IOException {
-        bufPos = pos;
+        file.seek(pos);
+        mpbuf = null;
     }
 
     @Override

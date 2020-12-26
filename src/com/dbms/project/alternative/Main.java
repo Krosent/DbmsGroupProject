@@ -4,6 +4,7 @@ import com.dbms.project.MultiWayMerge.Extsort;
 import com.dbms.project.experiment1.*;
 import com.dbms.project.experiment1.LengthReadStreamMethodOne;
 import com.dbms.project.experiment2.*;
+import com.dbms.project.experiment3.*;
 import com.dbms.project.streamInterfaces.ReadStreamInterface;
 import com.dbms.project.streamInterfaces.WriteStreamInterface;
 
@@ -108,12 +109,28 @@ public class Main {
         randomReadExperimentThree();
         System.out.println("--- END OPERATION ---");*/
 
+        /*
         System.out.println("--- START Random Reading Experiment | Four ---");
         randomReadExperimentFour();
+        System.out.println("--- END OPERATION ---");*/
+
+
+        System.out.println("--- START Reading and Writing Experiment | One ---");
+        readAndWriteExperimentOne();
         System.out.println("--- END OPERATION ---");
 
+        System.out.println("--- START Reading and Writing Experiment | Two ---");
+        readAndWriteExperimentTwo();
+        System.out.println("--- END OPERATION ---");
 
-        //readStreamMethodFour();
+        System.out.println("--- START Reading and Writing Experiment | Three ---");
+        readAndWriteExperimentThree();
+        System.out.println("--- END OPERATION ---");
+
+        System.out.println("--- START Reading and Writing Experiment | Four ---");
+        readAndWriteExperimentFour();
+        System.out.println("--- END OPERATION ---");
+
     }
 
     public static void Experiment1version4() {
@@ -319,5 +336,21 @@ public class Main {
     public static void randomReadExperimentFour() throws IOException {
         RandomReadingExperimentFour randomReadingExperimentFour = new RandomReadingExperimentFour();
         randomReadingExperimentFour.executeExperiment("kind_type.csv", 5);
+    }
+    public static void readAndWriteExperimentOne() throws IOException {
+        ReadingAndWritingExperimentOne readAndWriteExperiment = new ReadingAndWritingExperimentOne("mergedExp3vers1");
+        readAndWriteExperiment.executeExperiment("kind_type.csv","comp_cast_type.csv");
+    }
+    public static void readAndWriteExperimentTwo() throws IOException {
+        ReadingAndWritingExperimentTwo readAndWriteExperiment = new ReadingAndWritingExperimentTwo("mergedExp3vers2");
+        readAndWriteExperiment.executeExperiment("comp_cast_type.csv","kind_type.csv");
+    }
+    public static void readAndWriteExperimentThree() throws IOException {
+        ReadingAndWritingExperimentThree readAndWriteExperiment = new ReadingAndWritingExperimentThree(5,"mergedExp3vers3");
+        readAndWriteExperiment.executeExperiment("comp_cast_type.csv","kind_type.csv","comp_cast_type.csv");
+    }
+    public static void readAndWriteExperimentFour() throws IOException {
+        ReadingAndWritingExperimentFour readAndWriteExperiment = new ReadingAndWritingExperimentFour(20,"mergedExp3vers4");
+        readAndWriteExperiment.executeExperiment("kind_type.csv","kind_type.csv");
     }
 }

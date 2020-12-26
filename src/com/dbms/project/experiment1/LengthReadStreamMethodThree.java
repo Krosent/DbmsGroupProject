@@ -3,7 +3,7 @@ package com.dbms.project.experiment1;
 import com.dbms.project.alternative.ReadStreamMethodThreeImpl;
 import com.dbms.project.streamInterfaces.ReadStreamInterface;
 
-public class LengthReadStreamMethodThree {
+public class LengthReadStreamMethodThree implements LengthReadStreamInterface{
     int B;
     ReadStreamInterface readStreamInstance;
     LengthExperiment length1;

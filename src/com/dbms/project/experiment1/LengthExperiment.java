@@ -30,6 +30,7 @@ public class LengthExperiment{
                 e.printStackTrace();
             }
         }
+        System.out.println("sum of" + f + sum);
         return sum;
     };
 }

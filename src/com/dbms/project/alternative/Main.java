@@ -14,13 +14,6 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        class Sortbyk implements Comparator<List<String>> {
-            // Used for sorting in ascending order of
-            // roll number
-            public int compare(List<String> a, List<String> b) {
-                return a.get(2).compareTo(b.get(2));
-            }
-        }
 /*
         System.out.println("--- READ Function METHOD ONE ---");
         // Execute write function of first method
@@ -33,7 +26,6 @@ public class Main {
         System.out.println("--- END ---");
 */
 
-/*
         System.out.println("--- READ Function METHOD TWO ---");
         // Execute write function of second method
         readStreamMethodTwo();
@@ -43,9 +35,9 @@ public class Main {
         // Execute write function of second method
         writeStreamMethodTwo();
         System.out.println("--- END ---");
-*/
 
-/*
+
+
         System.out.println("--- READ Function METHOD THREE ---");
         // Execute read function of the third method
         readStreamMethodThree();
@@ -55,7 +47,7 @@ public class Main {
         // Execute read function of the third method
         writeStreamMethodThree();
         System.out.println("--- END ---");
- */
+
 /*
         System.out.println("--- READ Function METHOD FOURTH ---");
         // Execute read function of the fourth method
@@ -85,8 +77,7 @@ public class Main {
         sequentialReadExperimentFour();
         System.out.println("--- END OPERATION ---");
 */
-
-
+/*
         System.out.println("--- START Random Reading Experiment | ONE ---");
         randomReadExperimentOne();
         System.out.println("--- END OPERATION ---");
@@ -102,7 +93,7 @@ public class Main {
         System.out.println("--- START Random Reading Experiment | Four ---");
         randomReadExperimentFour();
         System.out.println("--- END OPERATION ---");
-
+*/
 /*
         System.out.println("--- START Reading and Writing Experiment | One ---");
         readAndWriteExperimentOne();
@@ -120,12 +111,12 @@ public class Main {
         readAndWriteExperimentFour();
         System.out.println("--- END OPERATION ---");
 */
-
 /*
+
         System.out.println("--- START Testing Multi Way Merge SORT");
         TestExtsort();
         System.out.println("--- END OPERATION ---");
- */
+*/
     }
 
 

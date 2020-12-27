@@ -19,7 +19,7 @@ public class ReadStreamMethodTwoImpl implements ReadStreamInterface {
     @Override
     public String readLn() throws IOException {
         if((line = br.readLine()) != null) {
-            System.out.println("Line: " + line);
+            //System.out.println("Line: " + line);
             return line;
         }else {
         endOfStream = true;

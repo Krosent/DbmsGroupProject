@@ -76,7 +76,7 @@ public class ReadStreamMethodFourImpl implements ReadStreamInterface {
         }
 
         String charListToString = charList.stream().map(e->e.toString()).collect(Collectors.joining());
-        System.out.println("Mapped list: "+ charListToString);
+        //System.out.println("Mapped list: "+ charListToString);
         return charListToString;
 
     }

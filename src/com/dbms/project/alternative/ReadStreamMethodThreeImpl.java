@@ -45,7 +45,7 @@ public class ReadStreamMethodThreeImpl implements ReadStreamInterface {
             buffer.close();
         }
         String charListToString = charList.stream().map(e->e.toString()).collect(Collectors.joining());
-        System.out.println("Character list with buffer: "+ charListToString);
+        //System.out.println("Character list with buffer: "+ charListToString);
         return  charListToString;
 
     }

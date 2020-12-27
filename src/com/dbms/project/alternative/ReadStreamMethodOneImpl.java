@@ -41,7 +41,7 @@ public class ReadStreamMethodOneImpl implements ReadStreamInterface {
             fileReader.close();
         }
         String charListToString = charList.stream().map(e->e.toString()).collect(Collectors.joining());
-        System.out.println("Character list: "+ charListToString);
+        //System.out.println("Character list: "+ charListToString);
         return charListToString;
 
     }

@@ -13,8 +13,8 @@ public class Extsort {
     int k;
     int M;
     int d;
-    ReadStreamInterface readVersion;
-    WriteStreamInterface writeVersion;
+    ReadStreamInterface readStream;
+    WriteStreamInterface writeStream;
     ArrayList<List<String>> buffer;
     PriorityQueue<String> outputFiles;
 
@@ -26,65 +26,49 @@ public class Extsort {
         this.d = d;
         this.buffer = new ArrayList<>();
         this.outputFiles = new PriorityQueue<String>();
-        this.readVersion = bestReadVersion;
-        this.writeVersion = bestWriteVersion;
+        this.readStream = bestReadVersion;
+        this.writeStream = bestWriteVersion;
 
 
     }
-    void readAndSort(){
+    void readAndSort()throws IOException {
         int sizeBytes = 0;
 
-        try {
-                while ( !readVersion.endOfStream() & (sizeBytes < M)) {
-                    String line = readVersion.readLn();
-                    if(!line.isEmpty()) {sizeBytes += line.getBytes().length;
-                    List<String> record = Arrays.asList(line.split(","));
-                    buffer.add(record);}
+        while ( !readStream.endOfStream() & (sizeBytes < M)) {
+            String line = readStream.readLn();
+            if(!line.isEmpty()) {sizeBytes += line.getBytes().length;
+            List<String> record = Arrays.asList(line.split(","));
+            buffer.add(record);}
 
+        }
+        if(!buffer.isEmpty()){
+            if (buffer.get(0).size()>= k) {Collections.sort(buffer,new Comparator<List<String>>() {
+                public int compare(List<String> strings, List<String> otherStrings) {
+                    return strings.get(k-1).compareTo(otherStrings.get(k-1));
                 }
-                if(!buffer.isEmpty()){
+            });}
+            String nameOutputFile = "sortedFile" + (outputFiles.size() +1);
+            outputFiles.add(nameOutputFile);
+            writeStream.create(nameOutputFile);
 
-                if (buffer.get(0).size()>= k) {Collections.sort(buffer,new Comparator<List<String>>() {
-                    public int compare(List<String> strings, List<String> otherStrings) {
-                        return strings.get(k-1).compareTo(otherStrings.get(k-1));
-                    }
-                });}
-                String nameOutputFile = "sortedFile" + (outputFiles.size() +1);
-                outputFiles.add(nameOutputFile);
-            try {
-                writeVersion.create(nameOutputFile);
-            } catch (IOException e) {
-                e.printStackTrace();}
-
-                for (List<String> record : buffer) {
-
-                    String stringRecord = String.join(",", record);
-                    writeVersion.writeLn(stringRecord);
-                }
-            writeVersion.close();
-
-
-            }} catch (IOException e) {
-                e.printStackTrace();
+            for (List<String> record : buffer) {
+                String stringRecord = String.join(",", record);
+                writeStream.writeLn(stringRecord);
             }
+            writeStream.close();
+        }
         buffer = new ArrayList<>();
-
     }
 
-    void merge(ArrayList<ReadStreamInterface> inputStreams, int i){
+    void merge(ArrayList<ReadStreamInterface> inputStreams, int i)throws IOException {
         String nameOutputFile = "mergeSortedFile" + i;
-        try {
-            writeVersion.create(nameOutputFile);
-        } catch (IOException e) {
-            e.printStackTrace();}
+        writeStream.create(nameOutputFile);
         for (ReadStreamInterface stream : inputStreams) {
-
             if( !stream.endOfStream()){
-                try {String line = stream.readLn();
+                String line = stream.readLn();
                 if(!line.isEmpty()) {
                     List<String> record = Arrays.asList(line.split(","));
-                    buffer.add(record);}} catch (IOException e) {
-                    e.printStackTrace();}}}
+                    buffer.add(record);}}}
             //find smallest in buffer and write it to output
 
             while(!buffer.isEmpty()){
@@ -95,38 +79,28 @@ public class Extsort {
                         }
                     });
                     String stringRecord = String.join(",", record);
-                    try{writeVersion.writeLn(stringRecord);} catch (IOException e) {
-                        e.printStackTrace();}
+                    writeStream.writeLn(stringRecord);
                     int idx = buffer.indexOf(record);
                     buffer.remove(idx);
                     if (!inputStreams.get(idx).endOfStream()) {
-                        try{String line = inputStreams.get(idx).readLn();
+                        String line = inputStreams.get(idx).readLn();
                         if(!line.isEmpty()) {
                             List<String> newRecord = Arrays.asList(line.split(","));
 
-                            buffer.add(idx,newRecord);}} catch (IOException e) {
-                            e.printStackTrace();}
+                            buffer.add(idx,newRecord);}
                     }else {inputStreams.remove(idx);}
                     }
                 }
 
         outputFiles.add(nameOutputFile);
-        try{
-        writeVersion.close();
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
+        writeStream.close();
         buffer = new ArrayList<>();
         }
 
 
-    public void doSort(){
-        try {
-            readVersion.open(pathImdbFile);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        while (!readVersion.endOfStream())
+    public void doSort()throws IOException {
+        readStream.open(pathImdbFile);
+        while (!readStream.endOfStream())
         {readAndSort();}
         int mer = 1;
         while(!(outputFiles.size() == 1 )) {
@@ -135,15 +109,10 @@ public class Extsort {
         while ((i<d) & (!outputFiles.isEmpty())){
             ReadStreamInterface readStreamInstance = new ReadStreamMethodOneImpl();
             String file = outputFiles.poll();
-            try {
-                readStreamInstance.open(file);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+            readStreamInstance.open(file);
             inputStreams.add(readStreamInstance);
             i++;
         }
-
         merge(inputStreams, mer);
         mer++;}
 

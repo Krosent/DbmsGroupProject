@@ -1,13 +1,8 @@
 package com.dbms.project.experiment2;
 
-import com.dbms.project.experiment1.LengthExperiment;
 import com.dbms.project.experiment1.LengthReadStreamInterface;
-import com.dbms.project.experiment1.LengthReadStreamMethodFour;
-import com.dbms.project.experiment1.LengthReadStreamMethodOne;
 import com.dbms.project.streamInterfaces.ReadStreamInterface;
-import com.dbms.project.streamInterfaces.WriteStreamInterface;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Random;
 
@@ -25,8 +20,7 @@ public class RandomReadingExperiment {
     // f is the name of one of the csv files in the IMDB dataset, and j is a positive integer.
     public void randjump(String f, int j) throws IOException {
         // length of a file
-        int lenghtOfFile = lengthreadStream.calculateSum(f);
-        System.out.println("lenght of file: "+ lenghtOfFile );
+        int lenghtOfFile = lengthreadStream.executeExperiment(f);
         int sum = 0;
 
         readStream.open(pathImdb + f);
@@ -43,18 +37,17 @@ public class RandomReadingExperiment {
             // p value finally computed here
             int p =  rn.nextInt(range) + minimum;
 
-            System.out.println("BEFORE SEEK");
             // Seek to position p.
             readStream.seek(p);
-            System.out.println("AFTER SEEK" + p);
+            System.out.println("AFTER SEEK: " + p);
 
             // Read the line
             int l = readStream.readLn().length();
-            System.out.println("length" + l);
+            System.out.println("length of line: " + l);
 
             sum += l;
         }
-
+        //outputting sum as written, otherwise the compiler/interpreter may actually infer that you are reading the file without actually doing anything with it, and subsequently optimize your program by not reading the file at all.
         System.out.println("Iteration sum is: " + sum);
     }
 }

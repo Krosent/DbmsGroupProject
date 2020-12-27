@@ -20,10 +20,8 @@ public class ReadingAndWritingExperiment {
     // f is the name of one of the csv files in the IMDB dataset, and j is a positive integer.
     public void rrmerge(String... files) throws IOException {
         ArrayList<ReadStreamInterface> inputStreams = new ArrayList<>();
-        try {
-            writeStream.create(nameOutputFile);
-        } catch (IOException e) {
-            e.printStackTrace();}
+        writeStream.create(nameOutputFile);
+
         for (String file: files) {
             //the best reading stream implementation from experiment 1
             ReadStreamInterface stream = new ReadStreamMethodOneImpl();
@@ -44,10 +42,6 @@ public class ReadingAndWritingExperiment {
                 inputStreams.remove(processedStream);
             }
         }
-        try{
-            writeStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        writeStream.close();
     }
 }

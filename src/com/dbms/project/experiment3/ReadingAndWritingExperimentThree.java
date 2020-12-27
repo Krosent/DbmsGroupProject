@@ -4,7 +4,7 @@ import com.dbms.project.alternative.WriteStreamMethodThreeImpl;
 
 import java.io.IOException;
 
-public class ReadingAndWritingExperimentThree {
+public class ReadingAndWritingExperimentThree implements ReadAndWriteStreamInterface{
     int B;
     String nameOutputFile;
     public ReadingAndWritingExperimentThree(int B,String outputFile) {

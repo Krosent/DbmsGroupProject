@@ -14,23 +14,16 @@ public class LengthExperiment{
         this.version = v;
     }
 
-    public int calculateSum(String f){
+    public int calculateSum(String f)throws IOException{
         String file = pathImdb + f;
-        try {
-            version.open(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                while (!(version.endOfStream())) {
-                    String line = version.readLn();
-                    sum += line.length();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        version.open(file);
+
+        while (!(version.endOfStream())) {
+            String line = version.readLn();
+            sum += line.length();
         }
-        System.out.println("sum of" + f + sum);
+        //outputting sum as written, otherwise the compiler/interpreter may actually infer that you are reading the file without actually doing anything with it, and subsequently optimize your program by not reading the file at all.
+        System.out.println("total length of " + f +": "+ sum);
         return sum;
     };
 }

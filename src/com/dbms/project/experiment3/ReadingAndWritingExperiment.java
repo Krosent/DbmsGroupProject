@@ -1,6 +1,7 @@
 package com.dbms.project.experiment3;
 
 import com.dbms.project.alternative.ReadStreamMethodOneImpl;
+import com.dbms.project.alternative.ReadStreamMethodTwoImpl;
 import com.dbms.project.streamInterfaces.ReadStreamInterface;
 import com.dbms.project.streamInterfaces.WriteStreamInterface;
 
@@ -24,7 +25,7 @@ public class ReadingAndWritingExperiment {
 
         for (String file: files) {
             //the best reading stream implementation from experiment 1
-            ReadStreamInterface stream = new ReadStreamMethodOneImpl();
+            ReadStreamInterface stream = new ReadStreamMethodTwoImpl();
             String pathName = pathImdb + file;
             stream.open(pathName);
             inputStreams.add(stream);

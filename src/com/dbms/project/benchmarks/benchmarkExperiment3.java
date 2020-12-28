@@ -1,13 +1,15 @@
 package com.dbms.project.benchmarks;
 
 import com.dbms.project.experiment1.*;
+import com.dbms.project.experiment3.*;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
-public class benchmarkExperiment1 {
+
+public class benchmarkExperiment3 {
     //results are stored to keep the compiler from optimising the code obtaining them away
     public static List<Integer> use_results = new ArrayList<Integer>(10000);
 
@@ -98,8 +100,7 @@ public class benchmarkExperiment1 {
             int n_repetitions = 20;
             System.out.println("Repeating each measurement "+n_repetitions+" times.");
 
-
-            File res_file = new File("runtimes1.csv");
+            File res_file = new File("runtimes3.csv");
             System.out.println("Measuring runtimes for files ");
             for(int j = 0; j < strategies.size(); j++){
                 System.out.print(Strategy.values()[j]+": ");
@@ -107,7 +108,7 @@ public class benchmarkExperiment1 {
                 //measure runtimes
                 List<Long> rts = benchmark(0,strategies.get(j),n_repetitions);
                 //write to file
-                write2file(res_file,Strategy.values()[j],rts);
+                write2file(res_file, Strategy.values()[j],rts);
                 System.out.println("v");
             }
         }
@@ -153,13 +154,8 @@ public class benchmarkExperiment1 {
 
         static Function<Integer,Integer> version1(String file){
             return (Integer i) -> {
-                int length = 0;
-                try{LengthReadStreamInterface sequentialReadExperimentOne = new LengthReadStreamExperimentOne();
-                length = sequentialReadExperimentOne.executeExperiment(file);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-                return length;
+                ReadAndWriteStreamInterface readAndWriteStreamImplementationOne = new ReadingAndWritingExperimentOne(file);
+                return 0;
             };
         }
 
@@ -168,13 +164,8 @@ public class benchmarkExperiment1 {
      */
     static Function<Integer,Integer> version2(String file){
         return (Integer i) -> {
-            int length = 0;
-            try{LengthReadStreamInterface sequentialReadExperimentTwo = new LengthReadStreamExperimentTwo();
-                length = sequentialReadExperimentTwo.executeExperiment(file);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return length;
+            ReadAndWriteStreamInterface readAndWriteStreamImplementationTwo = new ReadingAndWritingExperimentTwo(file);
+            return 0;
         };
     }
 
@@ -184,13 +175,8 @@ public class benchmarkExperiment1 {
      */
     static Function<Integer,Integer> version3(String file, int B){
         return (Integer i) -> {
-            int length = 0;
-            try{LengthReadStreamInterface sequentialReadExperimentOne = new LengthReadStreamExperimentThree(B);
-                length = sequentialReadExperimentOne.executeExperiment(file);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return length;
+            ReadAndWriteStreamInterface readAndWriteStreamImplementationThree = new ReadingAndWritingExperimentThree(B, file);
+            return 0;
         };
     }
 
@@ -199,17 +185,8 @@ public class benchmarkExperiment1 {
      */
     static Function<Integer,Integer> version4(String file, int B){
         return (Integer i) -> {
-            int length = 0;
-            try{LengthReadStreamInterface sequentialReadExperimentFour = new LengthReadStreamExperimentFour(B);
-                length = sequentialReadExperimentFour.executeExperiment(file);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return length;
+            ReadAndWriteStreamInterface readAndWriteStreamImplementationFour = new ReadingAndWritingExperimentFour(B, file);
+            return 0;
         };
     }
-
-
-
-
 }

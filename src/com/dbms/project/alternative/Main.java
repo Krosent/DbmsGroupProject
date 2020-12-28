@@ -14,20 +14,20 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-/*
+
         System.out.println("--- READ Function METHOD ONE ---");
-        // Execute write function of first method
+        // Execute read function of first method
         readStreamMethodOne();
         System.out.println("--- END ---");
-
+/*
         System.out.println("--- Write Function METHOD ONE ---");
         // Execute write function of first method
         writeStreamMethodOne();
         System.out.println("--- END ---");
 */
-
+/*
         System.out.println("--- READ Function METHOD TWO ---");
-        // Execute write function of second method
+        // Execute read function of second method
         readStreamMethodTwo();
         System.out.println("--- END ---");
 
@@ -35,25 +35,25 @@ public class Main {
         // Execute write function of second method
         writeStreamMethodTwo();
         System.out.println("--- END ---");
+*/
 
-
-
+/*
         System.out.println("--- READ Function METHOD THREE ---");
         // Execute read function of the third method
         readStreamMethodThree();
         System.out.println("--- END ---");
 
         System.out.println("--- WRITE Function METHOD THREE ---");
-        // Execute read function of the third method
+        // Execute write function of the third method
         writeStreamMethodThree();
         System.out.println("--- END ---");
+*/
 
-/*
         System.out.println("--- READ Function METHOD FOURTH ---");
         // Execute read function of the fourth method
         readStreamMethodFour();
         System.out.println("--- END ---");
-
+/*
         System.out.println("--- WRITE Function METHOD FOURTH ---");
         // Execute write function of fourth method
         writeStreamMethodFour();
@@ -239,7 +239,7 @@ public class Main {
     public static void readStreamMethodFour() {
         ReadStreamInterface readStreamInstance = new ReadStreamMethodFourImpl(8);
         try {
-            readStreamInstance.open("src/com/dbms/project/alternative/readFile");
+            readStreamInstance.open("src/com/dbms/project/data/kind_type.csv");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } finally {

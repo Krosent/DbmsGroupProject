@@ -2,7 +2,6 @@ package com.dbms.project.experiment1;
 
 import com.dbms.project.streamInterfaces.ReadStreamInterface;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 
@@ -14,6 +13,8 @@ public class LengthExperiment{
         this.version = v;
     }
 
+    //the total length of this file is returned. Concretely, the length is calculated by reading the file once completely,
+    //reading it line by line with the ‘readln’ operation corresponding to the chosen implementation 'version'.
     public int calculateSum(String f)throws IOException{
         String file = pathImdb + f;
         version.open(file);

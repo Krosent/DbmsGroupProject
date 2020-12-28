@@ -1,6 +1,5 @@
 package com.dbms.project.experiment1;
 
-
 import java.io.IOException;
 
 public interface LengthReadStreamInterface{

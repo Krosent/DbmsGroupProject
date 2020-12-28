@@ -4,6 +4,8 @@ import com.dbms.project.alternative.WriteStreamMethodFourImpl;
 
 import java.io.IOException;
 
+//with this class the reading and writing experiment can be done on a couple of files using the fourth implementation of the write stream and
+// outputting all the lines of all the files in an output file, the name of which is given as a parameter, together with the B value
 public class ReadingAndWritingExperimentFour implements ReadAndWriteStreamInterface{
     int B;
     String nameOutputFile;

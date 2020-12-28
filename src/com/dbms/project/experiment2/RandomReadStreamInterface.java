@@ -1,6 +1,5 @@
 package com.dbms.project.experiment2;
 
-
 import java.io.IOException;
 
 public interface RandomReadStreamInterface {

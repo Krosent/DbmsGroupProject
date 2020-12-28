@@ -5,6 +5,8 @@ import com.dbms.project.experiment1.LengthReadStreamExperimentThree;
 
 import java.io.IOException;
 
+//with this class the Random reading experiment can be done on a file using the third implementation of the read stream and B given as a parameter
+// and calculating the length of the file in randjump using the third implementation
 public class RandomReadingExperimentThree implements RandomReadStreamInterface{
     int B;
     public RandomReadingExperimentThree(int B) {

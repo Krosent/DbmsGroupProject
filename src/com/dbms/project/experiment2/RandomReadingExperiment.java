@@ -17,6 +17,9 @@ public class RandomReadingExperiment {
         this.lengthreadStream = lengthCalculatorStream;
     }
 
+    //randjump makes j random jumps in the le. For each jump, it computes the length until the next end-of-line symbol.
+    // It outputs the sum of all such lengths.
+
     // f is the name of one of the csv files in the IMDB dataset, and j is a positive integer.
     public void randjump(String f, int j) throws IOException {
         // length of a file
